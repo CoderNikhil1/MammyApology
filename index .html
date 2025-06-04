@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mummy, Please Maaf Kar Do 🥺</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #ffeef8 0%, #f3e7f7 50%, #e8d5f2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .container {
+            text-align: center;
+            max-width: 600px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 50px 30px;
+            border-radius: 25px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .main-heading {
+            font-size: 2.5rem;
+            color: #8b5a8c;
+            margin-bottom: 30px;
+            animation: pulse 2s ease-in-out infinite;
+            text-shadow: 0 2px 10px rgba(139, 90, 140, 0.3);
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .message-container {
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 40px 0;
+        }
+
+        .rotating-message {
+            font-size: 1.3rem;
+            color: #6b4c6d;
+            line-height: 1.6;
+            opacity: 0;
+            animation: fadeInOut 4s ease-in-out infinite;
+            text-align: center;
+            font-style: italic;
+        }
+
+        @keyframes fadeInOut {
+            0%, 100% { opacity: 0; transform: translateY(10px); }
+            20%, 80% { opacity: 1; transform: translateY(0); }
+        }
+
+        .apology-button {
+            background: linear-gradient(45deg, #ff6b9d, #c44569);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(255, 107, 157, 0.4);
+            font-family: inherit;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        .apology-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(255, 107, 157, 0.6);
+            background: linear-gradient(45deg, #ff8fab, #d55a7f);
+        }
+
+        .apology-button:active {
+            transform: translateY(0);
+        }
+
+        .thank-you-message {
+            display: none;
+            font-size: 1.8rem;
+            color: #8b5a8c;
+            margin-top: 30px;
+            animation: bounceIn 0.8s ease-out;
+            text-shadow: 0 2px 10px rgba(139, 90, 140, 0.3);
+        }
+
+        @keyframes bounceIn {
+            0% { opacity: 0; transform: scale(0.3); }
+            50% { opacity: 1; transform: scale(1.1); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        .love-explosion {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 3rem;
+            color: #ff69b4;
+            pointer-events: none;
+            z-index: 1000;
+            animation: loveExplosion 2s ease-out forwards;
+        }
+
+        @keyframes loveExplosion {
+            0% { opacity: 0; transform: translate(-50%, -50%) scale(0); }
+            50% { opacity: 1; transform: translate(-50%, -50%) scale(1.5); }
+            100% { opacity: 0; transform: translate(-50%, -50%) scale(2); }
+        }
+
+        .dancing-hearts {
+            position: fixed;
+            font-size: 2rem;
+            color: #ff1493;
+            pointer-events: none;
+            z-index: 999;
+            animation: danceAround 3s ease-in-out infinite;
+        }
+
+        @keyframes danceAround {
+            0%, 100% { transform: rotate(0deg) translateX(0px) rotate(0deg); }
+            25% { transform: rotate(90deg) translateX(50px) rotate(-90deg); }
+            50% { transform: rotate(180deg) translateX(0px) rotate(-180deg); }
+            75% { transform: rotate(270deg) translateX(-50px) rotate(90deg); }
+        }
+
+        .sparkle-trail {
+            position: fixed;
+            width: 4px;
+            height: 4px;
+            background: #ffd700;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 998;
+            animation: sparkleMove 2s linear infinite;
+        }
+
+        @keyframes sparkleMove {
+            0% { opacity: 1; transform: scale(0); }
+            50% { opacity: 1; transform: scale(1); }
+            100% { opacity: 0; transform: scale(0); }
+        }
+
+        .floating-text {
+            position: fixed;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #ff69b4;
+            pointer-events: none;
+            z-index: 997;
+            animation: floatText 4s ease-out forwards;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        @keyframes floatText {
+            0% { opacity: 0; transform: translateY(50px) scale(0.5); }
+            20% { opacity: 1; transform: translateY(0) scale(1); }
+            80% { opacity: 1; transform: translateY(-100px) scale(1); }
+            100% { opacity: 0; transform: translateY(-200px) scale(0.5); }
+        }
+
+        .rainbow-hearts {
+            position: fixed;
+            font-size: 2.5rem;
+            pointer-events: none;
+            z-index: 996;
+            animation: rainbowPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes rainbowPulse {
+            0% { color: #ff69b4; transform: scale(1); }
+            16% { color: #ff1493; transform: scale(1.2); }
+            33% { color: #ff6347; transform: scale(1); }
+            50% { color: #ffd700; transform: scale(1.3); }
+            66% { color: #98fb98; transform: scale(1); }
+            83% { color: #87ceeb; transform: scale(1.2); }
+            100% { color: #dda0dd; transform: scale(1); }
+        }
+
+        .bouncing-emoji {
+            position: fixed;
+            font-size: 3rem;
+            pointer-events: none;
+            z-index: 995;
+            animation: bouncyFall 3s ease-out forwards;
+        }
+
+        @keyframes bouncyFall {
+            0% { transform: translateY(-100px) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            20% { transform: translateY(20px) rotate(36deg); }
+            40% { transform: translateY(-10px) rotate(72deg); }
+            60% { transform: translateY(15px) rotate(108deg); }
+            80% { transform: translateY(-5px) rotate(144deg); }
+            100% { transform: translateY(100vh) rotate(180deg); opacity: 0; }
+        }
+
+        .emoji-rain {
+            position: fixed;
+            top: -50px;
+            pointer-events: none;
+            font-size: 25px;
+            animation: fall linear infinite;
+            z-index: 1000;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+
+        .heart-float {
+            position: absolute;
+            color: rgba(255, 182, 193, 0.7);
+            font-size: 20px;
+            animation: floatUp 6s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes floatUp {
+            0% {
+                opacity: 0;
+                transform: translateY(0) rotate(0deg);
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-100px) rotate(180deg);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-heading {
+                font-size: 2rem;
+            }
+            
+            .rotating-message {
+                font-size: 1.1rem;
+            }
+            
+            .container {
+                padding: 30px 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-heading {
+                font-size: 1.7rem;
+            }
+            
+            .rotating-message {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="main-heading">Mummy, Please Maaf Kar Do 🥺</h1>
+        
+        <div class="message-container">
+            <div class="rotating-message" id="rotatingMessage"></div>
+        </div>
+        
+        <button class="apology-button" onclick="handleApology()">Maaf Kiya ❤️</button>
+        
+        <div class="thank-you-message" id="thankYouMessage">
+            Aapki muskaan meri jeet hai, Mummy! 💖
+        </div>
+    </div>
+
+    <script>
+        const messages = [
+            "Mummy, I'm really sorry for hurting your feelings... 💔",
+            "You mean the world to me, and I hate seeing you upset 🥺",
+            "Your love is my greatest strength, please forgive me 🙏",
+            "I promise to be better, you deserve all my respect ❤️",
+            "No one loves me like you do, Mummy... please smile again 😊"
+        ];
+
+        let currentMessageIndex = 0;
+        const messageElement = document.getElementById('rotatingMessage');
+
+        function showMessage() {
+            messageElement.textContent = messages[currentMessageIndex];
+            messageElement.style.animationDelay = '0s';
+            currentMessageIndex = (currentMessageIndex + 1) % messages.length;
+        }
+
+        // Start rotating messages
+        showMessage();
+        setInterval(showMessage, 4000);
+
+        // Floating hearts background effect
+        function createFloatingHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart-float';
+            heart.innerHTML = '💖';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDelay = Math.random() * 6 + 's';
+            heart.style.animationDuration = (Math.random() * 3 + 6) + 's';
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 9000);
+        }
+
+        // Create floating hearts periodically
+        setInterval(createFloatingHeart, 3000);
+
+        function createEmojiRain() {
+            const emojis = ['💖', '🥺', '🌸', '💕', '🌺', '💗', '🦋', '✨'];
+            
+            for (let i = 0; i < 50; i++) {
+                setTimeout(() => {
+                    const emoji = document.createElement('div');
+                    emoji.className = 'emoji-rain';
+                    emoji.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
+                    emoji.style.left = Math.random() * 100 + 'vw';
+                    emoji.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                    emoji.style.animationDelay = Math.random() * 2 + 's';
+                    document.body.appendChild(emoji);
+
+                    setTimeout(() => {
+                        emoji.remove();
+                    }, 5000);
+                }, i * 100);
+            }
+        }
+
+        function createLoveExplosion() {
+            const explosion = document.createElement('div');
+            explosion.className = 'love-explosion';
+            explosion.innerHTML = '💕💖💗';
+            document.body.appendChild(explosion);
+            
+            setTimeout(() => explosion.remove(), 2000);
+        }
+
+        function createDancingHearts() {
+            const heartEmojis = ['💖', '💕', '💗', '💘', '💝', '💓'];
+            
+            for (let i = 0; i < 8; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.className = 'dancing-hearts';
+                    heart.innerHTML = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
+                    heart.style.top = Math.random() * 80 + 10 + 'vh';
+                    heart.style.left = Math.random() * 80 + 10 + 'vw';
+                    heart.style.animationDelay = Math.random() * 2 + 's';
+                    document.body.appendChild(heart);
+                    
+                    setTimeout(() => heart.remove(), 6000);
+                }, i * 300);
+            }
+        }
+
+        function createSparkleTrail() {
+            for (let i = 0; i < 30; i++) {
+                setTimeout(() => {
+                    const sparkle = document.createElement('div');
+                    sparkle.className = 'sparkle-trail';
+                    sparkle.style.top = Math.random() * 100 + 'vh';
+                    sparkle.style.left = Math.random() * 100 + 'vw';
+                    sparkle.style.animationDelay = Math.random() * 1 + 's';
+                    document.body.appendChild(sparkle);
+                    
+                    setTimeout(() => sparkle.remove(), 3000);
+                }, i * 50);
+            }
+        }
+
+        function createFloatingTexts() {
+            const loveTexts = [
+                'Thank You! 💖',
+                'Love You Mummy! 🥰',
+                'You\'re the Best! ✨',
+                'My Hero! 👑',
+                'Love You So Much! 💕',
+                'Best Mummy Ever! 🌟'
+            ];
+            
+            for (let i = 0; i < 6; i++) {
+                setTimeout(() => {
+                    const text = document.createElement('div');
+                    text.className = 'floating-text';
+                    text.innerHTML = loveTexts[i];
+                    text.style.left = Math.random() * 70 + 15 + 'vw';
+                    text.style.top = Math.random() * 30 + 60 + 'vh';
+                    document.body.appendChild(text);
+                    
+                    setTimeout(() => text.remove(), 4000);
+                }, i * 500);
+            }
+        }
+
+        function createRainbowHearts() {
+            for (let i = 0; i < 12; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.className = 'rainbow-hearts';
+                    heart.innerHTML = '💖';
+                    heart.style.top = Math.random() * 90 + 5 + 'vh';
+                    heart.style.left = Math.random() * 90 + 5 + 'vw';
+                    heart.style.animationDelay = Math.random() * 1 + 's';
+                    document.body.appendChild(heart);
+                    
+                    setTimeout(() => heart.remove(), 4000);
+                }, i * 200);
+            }
+        }
+
+        function createBouncingEmojis() {
+            const cuteEmojis = ['🥰', '😘', '🤗', '😊', '🥺', '💋', '🌟', '👑'];
+            
+            for (let i = 0; i < 15; i++) {
+                setTimeout(() => {
+                    const emoji = document.createElement('div');
+                    emoji.className = 'bouncing-emoji';
+                    emoji.innerHTML = cuteEmojis[Math.floor(Math.random() * cuteEmojis.length)];
+                    emoji.style.left = Math.random() * 90 + 5 + 'vw';
+                    document.body.appendChild(emoji);
+                    
+                    setTimeout(() => emoji.remove(), 3000);
+                }, i * 200);
+            }
+        }
+
+        function handleApology() {
+            const button = document.querySelector('.apology-button');
+            const thankYou = document.getElementById('thankYouMessage');
+            const container = document.querySelector('.container');
+            
+            // Hide button and show thank you message
+            button.style.display = 'none';
+            thankYou.style.display = 'block';
+            
+            // THE ULTIMATE CUTE ANIMATION SEQUENCE! 🥰
+            
+            // 1. Love Explosion at center
+            createLoveExplosion();
+            
+            // 2. Dancing hearts around the screen
+            setTimeout(() => createDancingHearts(), 500);
+            
+            // 3. Sparkle trail effect
+            setTimeout(() => createSparkleTrail(), 800);
+            
+            // 4. Floating "Thank You, Love You" texts
+            setTimeout(() => createFloatingTexts(), 1200);
+            
+            // 5. Rainbow pulsing hearts
+            setTimeout(() => createRainbowHearts(), 1500);
+            
+            // 6. Bouncing cute emojis
+            setTimeout(() => createBouncingEmojis(), 2000);
+            
+            // 7. Original emoji rain (enhanced)
+            setTimeout(() => createEmojiRain(), 2500);
+            
+            // Change background to even more loving
+            document.body.style.background = 'linear-gradient(135deg, #fff0f8 0%, #ffe8f0 50%, #ffd6e8 100%)';
+            container.style.background = 'rgba(255, 255, 255, 0.95)';
+            container.style.transform = 'scale(1.05)';
+            container.style.transition = 'all 0.5s ease';
+            
+            // Add extra floating hearts continuously
+            for (let i = 0; i < 20; i++) {
+                setTimeout(createFloatingHeart, i * 200);
+            }
+            
+            // Keep the celebration going with waves of effects
+            setTimeout(() => {
+                createDancingHearts();
+                createSparkleTrail();
+            }, 4000);
+            
+            setTimeout(() => {
+                createRainbowHearts();
+                createFloatingTexts();
+            }, 7000);
+            
+            // Final wave of love
+            setTimeout(() => {
+                createLoveExplosion();
+                createBouncingEmojis();
+            }, 10000);
+        }
+
+        // Initial floating hearts
+        for (let i = 0; i < 5; i++) {
+            setTimeout(createFloatingHeart, i * 1000);
+        }
+    </script>
+</body>
+</html>
